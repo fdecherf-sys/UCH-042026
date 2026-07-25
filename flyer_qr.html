@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<title>UCH QR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html,body{ width:210mm; height:297mm; }
+  body {
+    font-family:'Barlow', Arial, sans-serif;
+    background:#eaeef5;
+    color:#0c1420;
+  }
+  .top {
+    display:flex;
+    align-items:stretch;
+    background:#fff;
+    position:relative;
+    overflow:hidden;
+    min-height:58mm;
+  }
+  .logo-box {
+    width:40%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8mm;
+  }
+  .logo-box img { width:100%; height:auto; max-height:44mm; object-fit:contain; }
+  .title-box {
+    flex:1;
+    background:#cc1f2a;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:8mm 8mm 8mm 16mm;
+    gap:2mm;
+  }
+  .eyebrow {
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:.12em;
+    color:#0e2f64;
+  }
+  .brevet-name {
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:800;
+    font-size:40px;
+    letter-spacing:.02em;
+    color:#0e2f64;
+    line-height:1.05;
+    text-transform:uppercase;
+  }
+  .day-name {
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    font-size:22px;
+    color:#1a4fa0;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .date-line {
+    font-family:'Barlow', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    color:#0c1420;
+  }
+  .disciplines {
+    text-align:center;
+    margin-top:10mm;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:.1em;
+    color:#0e2f64;
+    text-transform:uppercase;
+  }
+  .headline {
+    text-align:center;
+    margin-top:16mm;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:800;
+    font-size:46px;
+    color:#0e2f64;
+    text-transform:uppercase;
+    line-height:1.15;
+  }
+  .subtext {
+    text-align:center;
+    margin-top:6mm;
+    padding:0 20mm;
+    font-size:16px;
+    color:#6b7a90;
+    line-height:1.5;
+  }
+  .arrow {
+    text-align:center;
+    margin-top:8mm;
+    color:#cc1f2a;
+    font-size:34px;
+    line-height:1;
+  }
+  .qr-wrap {
+    display:flex;
+    justify-content:center;
+    margin-top:6mm;
+  }
+  .qr-card {
+    background:#fff;
+    border-radius:6px;
+    box-shadow:0 6px 24px rgba(14,47,100,0.18);
+    overflow:hidden;
+    width:90mm;
+  }
+  .qr-card .scan-label {
+    background:#0e2f64;
+    color:#fff;
+    text-align:center;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    letter-spacing:.1em;
+    font-size:18px;
+    padding:4mm 0;
+    text-transform:uppercase;
+  }
+  .qr-card .qr-img-wrap {
+    padding:8mm;
+    display:flex;
+    justify-content:center;
+  }
+  .qr-card .qr-img-wrap img { width:70mm; height:70mm; }
+  .qr-url {
+    text-align:center;
+    margin-top:5mm;
+    font-size:14px;
+    color:#6b7a90;
+    word-break:break-all;
+  }
+  .footer {
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#0e2f64;
+    color:#fff;
+    text-align:center;
+    padding:6mm 8mm;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:.04em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="logo-box">
+      <img src="https://fdecherf-sys.github.io/UCH-042026/Logo_UCH_Marche_VTT_Cyclo_R%C3%A9duit.JPG" alt="Logo UCH"/>
+    </div>
+    <div class="title-box">
+      <div class="eyebrow">SOUVENIR</div>
+      <div class="brevet-name">Patrick Hanquez</div>
+      <div class="day-name">Dimanche</div>
+      <div class="date-line">9 Août 2026 &nbsp;—&nbsp; Houplines</div>
+    </div>
+  </div>
+
+  <div class="disciplines">Cyclo &nbsp;·&nbsp; VTT &nbsp;·&nbsp; Gravel &nbsp;·&nbsp; Marche</div>
+
+  <div class="headline">Téléchargez votre<br/>parcours GPS</div>
+
+  <div class="subtext">Scannez le QR code ci-dessous pour accéder<br/>à tous les parcours et télécharger votre fichier GPX</div>
+
+  <div class="arrow">▼</div>
+
+  <div class="qr-wrap">
+    <div class="qr-card">
+      <div class="scan-label">Scan moi !</div>
+      <div class="qr-img-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=0&data=https%3A%2F%2Ffdecherf-sys.github.io%2FUCH-042026%2F" alt="QR code"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="qr-url">fdecherf-sys.github.io/UCH-042026/</div>
+
+  <div class="footer">Salle Amandine Henry &nbsp;·&nbsp; Complexe Sportif André Claeys &nbsp;·&nbsp; Rue Thiers, Houplines</div>
+
+</body>
+</html>
