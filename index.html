@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UCH — Randonnées Pâques 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UCH — Souvenir Patrick Hanquez 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,7 +27,6 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--off);
       color: var(--dark);
@@ -55,15 +54,15 @@
     .header-inner {
       max-width: 960px;
       margin: 0 auto;
-      padding: 28px 28px 32px;
+      padding: 24px 28px 28px;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
       position: relative;
       z-index: 1;
     }
     .logo-wrap img {
-      height: 96px;
+      height: 88px;
       width: auto;
       filter: drop-shadow(0 2px 14px rgba(0,0,0,0.55));
       display: block;
@@ -79,53 +78,138 @@
       text-transform: uppercase;
       padding: 3px 10px;
       border-radius: 2px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     h1 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(30px, 5.5vw, 56px);
+      font-size: clamp(22px, 4.5vw, 48px);
       font-weight: 800;
-      line-height: 1;
+      line-height: 1.05;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
     h1 .hl { color: #7ab4f0; }
     .header-sub {
-      margin-top: 8px;
+      margin-top: 6px;
       color: #90a8c8;
       font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    /* ══ MAIN ══ */
-    main {
+    /* ══ PAGES (SPA) ══ */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ══ MENU PRINCIPAL ══ */
+    #page-home main {
       max-width: 960px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 40px 24px 80px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .menu-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 28px;
       display: flex;
       flex-direction: column;
-      gap: 52px;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(14,47,100,0.14);
+    }
+    .menu-card.c-cyclo  { border-color: var(--red); }
+    .menu-card.c-vtt    { border-color: var(--green); }
+    .menu-card.c-gravel { border-color: var(--blue); }
+    .menu-card.c-marche { border-color: var(--orange); }
+
+    .menu-card:hover.c-cyclo  { background: #fff5f5; }
+    .menu-card:hover.c-vtt    { background: #f3faf4; }
+    .menu-card:hover.c-gravel { background: #f0f4ff; }
+    .menu-card:hover.c-marche { background: #fff8f0; }
+
+    .menu-icon {
+      font-size: 52px;
+      line-height: 1;
+    }
+    .menu-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .menu-card.c-cyclo  .menu-label { color: var(--red); }
+    .menu-card.c-vtt    .menu-label { color: var(--green); }
+    .menu-card.c-gravel .menu-label { color: var(--blue); }
+    .menu-card.c-marche .menu-label { color: var(--orange); }
+
+    .menu-sub {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-align: center;
     }
 
-    /* ══ SECTION BANNER ══ */
-    .section-header {
-      display: flex;
-      align-items: stretch;
+    /* ══ SOUS-PAGE DISCIPLINE ══ */
+    .sub-page main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+
+    /* Bouton retour */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 28px;
+      transition: all 0.15s;
+    }
+    .back-btn:hover { border-color: var(--muted); color: var(--dark); }
+
+    /* Bannière discipline */
+    .disc-banner {
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 6px 24px rgba(14,47,100,0.14);
-      margin-bottom: 16px;
-      min-height: 148px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: stretch;
+      min-height: 130px;
     }
-    .section-photo {
-      width: 220px;
+    .disc-banner-photo {
+      width: 200px;
       flex-shrink: 0;
       object-fit: cover;
       display: block;
     }
-    .section-info {
+    .disc-banner-info {
       flex: 1;
       padding: 24px 28px;
       display: flex;
@@ -134,7 +218,7 @@
       position: relative;
       overflow: hidden;
     }
-    .section-info::after {
+    .disc-banner-info::after {
       content: attr(data-sport);
       position: absolute;
       right: -8px; bottom: -20px;
@@ -146,38 +230,28 @@
       text-transform: uppercase;
       pointer-events: none;
     }
-    .si-gravel  { background: linear-gradient(130deg, var(--blue-dk) 0%, var(--blue) 100%); }
-    .si-cyclo   { background: linear-gradient(130deg, #7a1018 0%, var(--red) 100%); }
-    .si-vtt     { background: linear-gradient(130deg, #1a4a20 0%, var(--green) 100%); }
-    .si-marche  { background: linear-gradient(130deg, #5a3200 0%, var(--orange) 100%); }
+    .disc-banner-info.si-cyclo  { background: linear-gradient(130deg,#7a1018 0%,var(--red) 100%); }
+    .disc-banner-info.si-vtt    { background: linear-gradient(130deg,#1a4a20 0%,var(--green) 100%); }
+    .disc-banner-info.si-gravel { background: linear-gradient(130deg,var(--blue-dk) 0%,var(--blue) 100%); }
+    .disc-banner-info.si-marche { background: linear-gradient(130deg,#5a3200 0%,var(--orange) 100%); }
 
-    .section-eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 6px;
-    }
-    .section-title {
+    .disc-banner-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 34px;
+      font-size: 40px;
       font-weight: 800;
       text-transform: uppercase;
       color: #fff;
       letter-spacing: 0.04em;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-    .section-desc {
+    .disc-banner-desc {
       font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.5;
+      color: rgba(255,255,255,0.65);
     }
 
     /* ══ CARDS ══ */
     .cards { display: flex; flex-direction: column; gap: 3px; }
-
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -188,467 +262,468 @@
       align-items: center;
       gap: 16px;
       transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-      animation: fadeUp 0.45s ease both;
+      animation: fadeUp 0.4s ease both;
     }
-    .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.10s; }
-    .card:nth-child(3) { animation-delay: 0.15s; }
-    .card:nth-child(4) { animation-delay: 0.20s; }
-
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
     }
+    .card:nth-child(1){animation-delay:.04s}
+    .card:nth-child(2){animation-delay:.09s}
+    .card:nth-child(3){animation-delay:.14s}
+    .card:nth-child(4){animation-delay:.19s}
+    .card:nth-child(5){animation-delay:.24s}
 
-    .card:hover { box-shadow: 0 4px 18px rgba(14,47,100,0.10); transform: translateX(4px); }
-    .c-gravel:hover { border-color: var(--blue-lt); }
-    .c-cyclo:hover  { border-color: var(--red-lt); }
-    .c-vtt:hover    { border-color: var(--green-lt); }
-    .c-marche:hover { border-color: var(--orange-lt); }
+    .card:hover { box-shadow:0 4px 18px rgba(14,47,100,.10); transform:translateX(4px); }
+    .c-cyclo-card:hover  { border-color:var(--red-lt); }
+    .c-vtt-card:hover    { border-color:var(--green-lt); }
+    .c-gravel-card:hover { border-color:var(--blue-lt); }
+    .c-marche-card:hover { border-color:var(--orange-lt); }
 
-    /* distance block */
-    .dist-block { text-align: center; }
+    .dist-block { text-align:center; }
     .dist-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 34px;
-      font-weight: 800;
-      line-height: 1;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:34px; font-weight:800; line-height:1;
     }
-    .c-gravel .dist-num { color: var(--blue); }
-    .c-cyclo  .dist-num { color: var(--red); }
-    .c-vtt    .dist-num { color: var(--green); }
-    .c-marche .dist-num { color: var(--orange); }
-
+    .c-cyclo-card  .dist-num { color:var(--red); }
+    .c-vtt-card    .dist-num { color:var(--green); }
+    .c-gravel-card .dist-num { color:var(--blue); }
+    .c-marche-card .dist-num { color:var(--orange); }
     .dist-unit {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 2px;
+      font-size:10px; font-weight:600;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--muted); margin-top:2px;
     }
 
-    /* card body */
     .card-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--dark);
-      margin-bottom: 5px;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:17px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.04em;
+      color:var(--dark); margin-bottom:5px;
     }
-    .card-meta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+    .card-meta { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
     .meta-chip {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      color: var(--muted);
+      display:flex; align-items:center; gap:4px;
+      font-size:11px; color:var(--muted);
     }
-    .meta-chip svg { opacity: 0.7; flex-shrink: 0; }
 
-    /* actions */
-    .actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-
+    .actions { display:flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 8px 13px;
-      border-radius: 4px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      white-space: nowrap;
+      display:inline-flex; align-items:center; gap:5px;
+      padding:8px 13px; border-radius:4px;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:12px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:all .15s ease; white-space:nowrap;
     }
-    .btn-blue   { background: var(--blue);   color: #fff; }
-    .btn-blue:hover   { background: var(--blue-lt);   transform: translateY(-1px); }
-    .btn-red    { background: var(--red);    color: #fff; }
-    .btn-red:hover    { background: var(--red-lt);    transform: translateY(-1px); }
-    .btn-green  { background: var(--green);  color: #fff; }
-    .btn-green:hover  { background: var(--green-lt);  transform: translateY(-1px); }
-    .btn-orange { background: var(--orange); color: #fff; }
-    .btn-orange:hover { background: var(--orange-lt); transform: translateY(-1px); }
+    .btn-red    { background:var(--red);    color:#fff; }
+    .btn-red:hover    { background:var(--red-lt);    transform:translateY(-1px); }
+    .btn-green  { background:var(--green);  color:#fff; }
+    .btn-green:hover  { background:var(--green-lt);  transform:translateY(-1px); }
+    .btn-blue   { background:var(--blue);   color:#fff; }
+    .btn-blue:hover   { background:var(--blue-lt);   transform:translateY(-1px); }
+    .btn-orange { background:var(--orange); color:#fff; }
+    .btn-orange:hover { background:var(--orange-lt); transform:translateY(-1px); }
     .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
+      background:transparent; color:var(--muted);
+      border:1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: var(--muted); color: var(--dark); }
+    .btn-ghost:hover { border-color:var(--muted); color:var(--dark); }
 
     /* ══ FOOTER ══ */
     footer {
-      background: var(--blue-dk);
-      color: #90a8c8;
-      text-align: center;
-      padding: 22px 32px;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      background:var(--blue-dk); color:#90a8c8;
+      text-align:center; padding:20px 32px;
+      font-size:11px; letter-spacing:.08em; text-transform:uppercase;
     }
-    footer strong { color: #fff; }
+    footer strong { color:#fff; }
+
+    /* ══ INTRO HOME ══ */
+    .home-intro {
+      text-align:center;
+      padding: 0 0 28px;
+    }
+    .home-intro h2 {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:28px; font-weight:700;
+      color:var(--blue-dk);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+    }
+    .home-intro p {
+      color:var(--muted); font-size:14px;
+    }
 
     /* ══ RESPONSIVE ══ */
-    @media (max-width: 640px) {
-      .header-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
-      .logo-wrap img { height: 70px; }
-      .section-header { flex-direction: column; min-height: auto; }
-      .section-photo { width: 100%; height: 140px; }
-      .card { grid-template-columns: 58px 1fr; gap: 10px; }
-      .actions { grid-column: 1 / -1; justify-content: flex-start; }
-      .btn { padding: 7px 11px; font-size: 11px; }
+    @media (max-width:600px){
+      .menu-grid { grid-template-columns:1fr; }
+      .header-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .logo-wrap img { height:68px; }
+      .card { grid-template-columns:58px 1fr; gap:10px; }
+      .actions { grid-column:1/-1; justify-content:flex-start; }
+      .btn { padding:7px 11px; font-size:11px; }
+      .disc-banner { flex-direction: column; min-height: auto; }
+      .disc-banner-photo { width: 100%; height: 130px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
+<!-- ══ HEADER commun ══ -->
 <header>
   <div class="header-inner">
     <div class="logo-wrap">
-      <img src="Logo_UCH_Marche_VTT_Cyclo_Réduit.JPG" alt="Logo UCH — Union Cyclotouriste Houplinoise" />
+      <img src="Logo_UCH_Marche_VTT_Cyclo_Réduit.JPG" alt="Logo UCH"/>
     </div>
     <div class="header-text">
       <div class="header-tag">Téléchargement parcours</div>
-      <h1>Brevet<br/><span class="hl">Gilles D'Haene 2026</span></h1>
-      <p class="header-sub">Scannez · Téléchargez · Roulez</p>
+      <h1>Souvenir<br/><span class="hl">Patrick Hanquez 2026</span></h1>
+      <p class="header-sub">Dimanche 9 Août 2026 &nbsp;·&nbsp; Houplines</p>
     </div>
   </div>
 </header>
 
-<main>
-
-  <!-- ══════════════ GRAVEL ══════════════ -->
-  <section>
-    <div class="section-header">
-      <img class="section-photo"
-           src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=480&q=80"
-           alt="Gravel" onerror="this.style.display='none'" />
-      <div class="section-info si-gravel" data-sport="GRAVEL">
-        <div class="section-title">Gravel</div>
-        <div class="section-desc">Parcours mixtes chemins &amp; routes — 3 distances</div>
+<!-- ══════════════════════════════
+     PAGE ACCUEIL — menu
+══════════════════════════════ -->
+<div id="page-home" class="page active">
+  <main>
+    <div class="home-intro">
+      <h2>Choisissez votre activité</h2>
+      <p>Sélectionnez une discipline pour accéder aux parcours et télécharger votre fichier GPX.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card c-cyclo" onclick="showPage('cyclo')">
+        <div class="menu-icon">🚴</div>
+        <div class="menu-label">Cyclo</div>
+        <div class="menu-sub">26 · 39 · 54 · 78 · 91 km</div>
+      </div>
+      <div class="menu-card c-vtt" onclick="showPage('vtt')">
+        <div class="menu-icon">🚵</div>
+        <div class="menu-label">VTT</div>
+        <div class="menu-sub">24 · 44 · 54 · 64 km</div>
+      </div>
+      <div class="menu-card c-gravel" onclick="showPage('gravel')">
+        <div class="menu-icon">🪨</div>
+        <div class="menu-label">Gravel</div>
+        <div class="menu-sub">42 · 64 · 82 km</div>
+      </div>
+      <div class="menu-card c-marche" onclick="showPage('marche')">
+        <div class="menu-icon">🥾</div>
+        <div class="menu-label">Marche</div>
+        <div class="menu-sub">5,4 · 8 · 13 km</div>
       </div>
     </div>
+  </main>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE CYCLO
+══════════════════════════════ -->
+<div id="page-cyclo" class="page sub-page">
+  <main>
+    <button class="back-btn" onclick="showPage('home')">← Retour</button>
+
+    <div class="disc-banner">
+      <img class="disc-banner-photo" src="Vignette_cyclo.avif" alt="Cyclo" onerror="this.style.display='none'"/>
+      <div class="disc-banner-info si-cyclo" data-sport="CYCLO">
+        <div class="disc-banner-title">🚴 Cyclo</div>
+        <div class="disc-banner-desc">Parcours route fléchés — 5 distances · Départ 7h30–10h</div>
+      </div>
+    </div>
+
     <div class="cards">
 
-      <!-- 42 km · D+ 269 m -->
-      <div class="card c-gravel">
-        <div class="dist-block"><div class="dist-num">42</div><div class="dist-unit">km</div></div>
-        <div class="card-body">
-          <div class="card-name">Découverte</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              269 m D+
-            </span>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="btn btn-blue"  href="UCH_GRAVEL_42km_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://www.komoot.com/tour/2634769965" target="_blank" rel="noopener">Komoot ↗</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/415462591" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595809" target="_blank" rel="noopener">Openrunner ↗</a>
-        </div>
-      </div>
-
-      <!-- 64 km · D+ 546 m -->
-      <div class="card c-gravel">
-        <div class="dist-block"><div class="dist-num">64</div><div class="dist-unit">km</div></div>
-        <div class="card-body">
-          <div class="card-name">Intermédiaire</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              546 m D+
-            </span>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="btn btn-blue"  href="UCH_GRAVEL_64km_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://www.komoot.com/tour/2634752474" target="_blank" rel="noopener">Komoot ↗</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/415463000" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595815" target="_blank" rel="noopener">Openrunner ↗</a>
-        </div>
-      </div>
-
-      <!-- 82 km · D+ 668 m -->
-      <div class="card c-gravel">
-        <div class="dist-block"><div class="dist-num">82</div><div class="dist-unit">km</div></div>
-        <div class="card-body">
-          <div class="card-name">Expert</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              668 m D+
-            </span>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="btn btn-blue"  href="UCH_GRAVEL_82km_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://www.komoot.com/tour/2634742421" target="_blank" rel="noopener">Komoot ↗</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/415463225" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595822" target="_blank" rel="noopener">Openrunner ↗</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════ CYCLO ══════════════ -->
-  <section>
-    <div class="section-header">
-      <img class="section-photo"
-           src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=480&q=80"
-           alt="Cyclo route" onerror="this.style.display='none'" />
-      <div class="section-info si-cyclo" data-sport="CYCLO">
-        <div class="section-title">Cyclo</div>
-        <div class="section-desc">Parcours route — 4 distances</div>
-      </div>
-    </div>
-    <div class="cards">
-
-      <!-- 26 km · D+ 70 m -->
-      <div class="card c-cyclo">
+      <div class="card c-cyclo-card">
         <div class="dist-block"><div class="dist-num">26</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Découverte</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              70 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH Route 26KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 70 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-red"   href="UCH_ROUTE_26KM_Avril_2026.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/426268521" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595678" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-red" href="UCH_ROUTE_26KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128234880" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/461034902" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24067590" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 39 km · D+ 215 m -->
-      <div class="card c-cyclo">
+      <div class="card c-cyclo-card">
         <div class="dist-block"><div class="dist-num">39</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Loisir</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              215 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH Route 39KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 215 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-red"   href="UCH_ROUTE_39KM_Avril_2026.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/429329778" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595701" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-red" href="UCH_ROUTE_39KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128236975" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/461035531" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24067592" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 54 km · D+ 320 m -->
-      <div class="card c-cyclo">
+      <div class="card c-cyclo-card">
         <div class="dist-block"><div class="dist-num">54</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Intermédiaire</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              320 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH Route 54KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 326 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-red"   href="UCH_ROUTE_54KM_Avril_2026.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/426266465" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595708" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-red" href="UCH_ROUTE_54KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128238147" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/461035851" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24067593" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 78 km · D+ 567 m -->
-      <div class="card c-cyclo">
+      <div class="card c-cyclo-card">
         <div class="dist-block"><div class="dist-num">78</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Expert</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              567 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH Route 78KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 573 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-red"   href="UCH_ROUTE_78KM_Avril_2026.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/426274890" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595714" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-red" href="UCH_ROUTE_78KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128239047" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/461036365" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24067596" target="_blank" rel="noopener">Openrunner ↗</a>
+        </div>
+      </div>
+
+      <div class="card c-cyclo-card">
+        <div class="dist-block"><div class="dist-num">91</div><div class="dist-unit">km</div></div>
+        <div class="card-body">
+          <div class="card-name">UCH Route 91KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 575 m D+</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-red" href="UCH_ROUTE_91KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128240218" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/430812536" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24067597" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
     </div>
-  </section>
+  </main>
+</div>
 
+<!-- ══════════════════════════════
+     PAGE VTT
+══════════════════════════════ -->
+<div id="page-vtt" class="page sub-page">
+  <main>
+    <button class="back-btn" onclick="showPage('home')">← Retour</button>
 
-  <!-- ══════════════ VTT ══════════════ -->
-  <section>
-    <div class="section-header">
-      <img class="section-photo"
-           src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?w=480&q=80"
-           alt="VTT" onerror="this.style.display='none'" />
-      <div class="section-info si-vtt" data-sport="VTT">
-        <div class="section-title">VTT</div>
-        <div class="section-desc">Parcours tout-terrain — 4 distances</div>
+    <div class="disc-banner">
+      <img class="disc-banner-photo" src="Vignette_VTT.avif" alt="VTT" onerror="this.style.display='none'"/>
+      <div class="disc-banner-info si-vtt" data-sport="VTT">
+        <div class="disc-banner-title">🚵 VTT</div>
+        <div class="disc-banner-desc">Parcours tout-terrain — 4 distances · Départ 7h30–10h</div>
       </div>
     </div>
+
     <div class="cards">
 
-      <!-- 24 km · D+ 150 m -->
-      <div class="card c-vtt">
+      <div class="card c-vtt-card">
         <div class="dist-block"><div class="dist-num">24</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Découverte</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              150 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH VTT 24KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 150 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-green" href="UCH_VTT_24KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/429591833" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595722" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-green" href="UCH_VTT_24KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128242394" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/479608680" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24470216" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 44 km · D+ 400 m -->
-      <div class="card c-vtt">
+      <div class="card c-vtt-card">
         <div class="dist-block"><div class="dist-num">44</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Loisir</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              400 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH VTT 44KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 400 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-green" href="UCH_VTT_44KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/429591147" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595725" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-green" href="UCH_VTT_44KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128244516" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/479610523" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24470211" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 54 km · D+ 600 m -->
-      <div class="card c-vtt">
+      <div class="card c-vtt-card">
         <div class="dist-block"><div class="dist-num">54</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Intermédiaire</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              600 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH VTT 54KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 600 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-green" href="UCH_VTT_54KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/429591293" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595730" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-green" href="UCH_VTT_54KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128246403" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/479611973" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24470254" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 64 km · D+ 900 m -->
-      <div class="card c-vtt">
+      <div class="card c-vtt-card">
         <div class="dist-block"><div class="dist-num">64</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Expert</div>
-          <div class="card-meta">
-            <span class="meta-chip">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
-              900 m D+
-            </span>
-          </div>
+          <div class="card-name">UCH VTT 64KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 900 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-green" href="UCH_VTT_64KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost" href="https://connect.garmin.com/modern/course/430662910" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23595733" target="_blank" rel="noopener">Openrunner ↗</a>
+          <a class="btn btn-green" href="UCH_VTT_64KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128252312" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/479613280" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24470268" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
     </div>
-  </section>
+  </main>
+</div>
 
+<!-- ══════════════════════════════
+     PAGE GRAVEL
+══════════════════════════════ -->
+<div id="page-gravel" class="page sub-page">
+  <main>
+    <button class="back-btn" onclick="showPage('home')">← Retour</button>
 
-  <!-- ══════════════ MARCHE ══════════════ -->
-  <section>
-    <div class="section-header">
-      <img class="section-photo"
-           src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=480&q=80"
-           alt="Marche" onerror="this.style.display='none'" />
-      <div class="section-info si-marche" data-sport="MARCHE">
-        <div class="section-title">Marche</div>
-        <div class="section-desc">Parcours pédestres — 2 distances</div>
+    <div class="disc-banner">
+      <img class="disc-banner-photo" src="Vignette_Gravel.avif" alt="Gravel" onerror="this.style.display='none'"/>
+      <div class="disc-banner-info si-gravel" data-sport="GRAVEL">
+        <div class="disc-banner-title">🪨 Gravel</div>
+        <div class="disc-banner-desc">Parcours mixtes GPX — 3 distances · Départ 7h30–10h</div>
       </div>
     </div>
+
     <div class="cards">
 
-      <!-- 8 km -->
-      <div class="card c-marche">
-        <div class="dist-block"><div class="dist-num">8</div><div class="dist-unit">km</div></div>
+      <div class="card c-gravel-card">
+        <div class="dist-block"><div class="dist-num">42</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Balade</div>
-          <div class="card-meta">
-            <!-- pas de D+ disponible -->
-          </div>
+          <div class="card-name">UCH Gravel 42KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 269 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-orange" href="UCH_MARCHE_8KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost"  href="https://connect.garmin.com/modern/course/436624311" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost"  href="https://www.openrunner.com/route-details/23595834" target="_blank" rel="noopener">Openrunner ↗</a>
-          <a class="btn btn-ghost"  href="https://www.komoot.com/fr-fr/tour/2835466925" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-blue" href="UCH_GRAVEL_42KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128251156" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/487468306" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24640138" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
-      <!-- 13 km -->
-      <div class="card c-marche">
-        <div class="dist-block"><div class="dist-num">13</div><div class="dist-unit">km</div></div>
+      <div class="card c-gravel-card">
+        <div class="dist-block"><div class="dist-num">64</div><div class="dist-unit">km</div></div>
         <div class="card-body">
-          <div class="card-name">Randonnée</div>
-          <div class="card-meta">
-            <!-- pas de D+ disponible -->
-          </div>
+          <div class="card-name">UCH Gravel 64KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 546 m D+</span></div>
         </div>
         <div class="actions">
-          <a class="btn btn-orange" href="UCH_MARCHE_13KM_PAQUES_260306.gpx" download>⬇ GPX</a>
-          <a class="btn btn-ghost"  href="https://connect.garmin.com/modern/course/436625012" target="_blank" rel="noopener">Garmin ↗</a>
-          <a class="btn btn-ghost"  href="https://www.openrunner.com/route-details/23595841" target="_blank" rel="noopener">Openrunner ↗</a>
-          <a class="btn btn-ghost"  href="https://www.komoot.com/fr-fr/tour/2835473328" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-blue" href="UCH_GRAVEL_64KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128252312" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/487469815" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24640145" target="_blank" rel="noopener">Openrunner ↗</a>
+        </div>
+      </div>
+
+      <div class="card c-gravel-card">
+        <div class="dist-block"><div class="dist-num">82</div><div class="dist-unit">km</div></div>
+        <div class="card-body">
+          <div class="card-name">UCH Gravel 82KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 668 m D+</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-blue" href="UCH_GRAVEL_82KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128254217" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/487470649" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/24640141" target="_blank" rel="noopener">Openrunner ↗</a>
         </div>
       </div>
 
     </div>
-  </section>
+  </main>
+</div>
 
-</main>
+<!-- ══════════════════════════════
+     PAGE MARCHE
+══════════════════════════════ -->
+<div id="page-marche" class="page sub-page">
+  <main>
+    <button class="back-btn" onclick="showPage('home')">← Retour</button>
+
+    <div class="disc-banner">
+      <img class="disc-banner-photo" src="Vignette_Marche.avif" alt="Marche" onerror="this.style.display='none'"/>
+      <div class="disc-banner-info si-marche" data-sport="MARCHE">
+        <div class="disc-banner-title">🥾 Marche</div>
+        <div class="disc-banner-desc">Parcours pédestres fléchés — 3 distances · Départ 7h30–10h</div>
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card c-marche-card">
+        <div class="dist-block"><div class="dist-num">5,4</div><div class="dist-unit">km</div></div>
+        <div class="card-body">
+          <div class="card-name">UCH Marche 5,4KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 19 m D+</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-orange" href="UCH_MARCHE_5KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128256741" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/488179877" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23797173" target="_blank" rel="noopener">Openrunner ↗</a>
+        </div>
+      </div>
+
+      <div class="card c-marche-card">
+        <div class="dist-block"><div class="dist-num">8</div><div class="dist-unit">km</div></div>
+        <div class="card-body">
+          <div class="card-name">UCH Marche 8KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 21 m D+</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-orange" href="UCH_MARCHE_8KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128258722" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/488180081" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23895369" target="_blank" rel="noopener">Openrunner ↗</a>
+        </div>
+      </div>
+
+      <div class="card c-marche-card">
+        <div class="dist-block"><div class="dist-num">13</div><div class="dist-unit">km</div></div>
+        <div class="card-body">
+          <div class="card-name">UCH Marche 13KM</div>
+          <div class="card-meta"><span class="meta-chip">↑ 35 m D+</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-orange" href="UCH_MARCHE_13KM_Aout_2026.gpx" download>⬇ GPX</a>
+          <a class="btn btn-ghost" href="https://www.komoot.com/fr-fr/tour/3128260205" target="_blank" rel="noopener">Komoot ↗</a>
+          <a class="btn btn-ghost" href="https://connect.garmin.com/app/course/488180184" target="_blank" rel="noopener">Garmin ↗</a>
+          <a class="btn btn-ghost" href="https://www.openrunner.com/route-details/23965376" target="_blank" rel="noopener">Openrunner ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <strong>Union Cyclotouriste Houplinoise</strong> &nbsp;·&nbsp; Marche · VTT · Cyclo · Gravel &nbsp;·&nbsp; Pâques 2026
+  <strong>Union Cyclotouriste Houplinoise</strong> &nbsp;·&nbsp; Marche · VTT · Cyclo · Gravel &nbsp;·&nbsp; Souvenir Patrick Hanquez 2026
 </footer>
 
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
 </body>
 </html>
