@@ -146,6 +146,17 @@
       font-size: 52px;
       line-height: 1;
     }
+    .menu-icon img {
+      width: 84px;
+      height: 84px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+    .menu-card.c-cyclo  .menu-icon img { border: 3px solid var(--red); }
+    .menu-card.c-vtt    .menu-icon img { border: 3px solid var(--green); }
+    .menu-card.c-gravel .menu-icon img { border: 3px solid var(--blue); }
+    .menu-card.c-marche .menu-icon img { border: 3px solid var(--orange); }
     .menu-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 32px;
@@ -396,22 +407,22 @@
     </div>
     <div class="menu-grid">
       <div class="menu-card c-cyclo" onclick="showPage('cyclo')">
-        <div class="menu-icon">🚴</div>
+        <div class="menu-icon"><img src="Vignette_cyclo.avif" alt="Cyclo" onerror="this.parentElement.textContent='🚴'"/></div>
         <div class="menu-label">Cyclo</div>
         <div class="menu-sub">26 · 39 · 54 · 78 · 91 km</div>
       </div>
       <div class="menu-card c-vtt" onclick="showPage('vtt')">
-        <div class="menu-icon">🚵</div>
+        <div class="menu-icon"><img src="Vignette_VTT.avif" alt="VTT" onerror="this.parentElement.textContent='🚵'"/></div>
         <div class="menu-label">VTT</div>
         <div class="menu-sub">24 · 44 · 54 · 64 km</div>
       </div>
       <div class="menu-card c-gravel" onclick="showPage('gravel')">
-        <div class="menu-icon">🪨</div>
+        <div class="menu-icon"><img src="Vignette_Gravel.avif" alt="Gravel" onerror="this.parentElement.textContent='🪨'"/></div>
         <div class="menu-label">Gravel</div>
         <div class="menu-sub">42 · 64 · 82 km</div>
       </div>
       <div class="menu-card c-marche" onclick="showPage('marche')">
-        <div class="menu-icon">🥾</div>
+        <div class="menu-icon"><img src="Vignette_Marche.avif" alt="Marche" onerror="this.parentElement.textContent='🥾'"/></div>
         <div class="menu-label">Marche</div>
         <div class="menu-sub">5,4 · 8 · 13 km</div>
       </div>
